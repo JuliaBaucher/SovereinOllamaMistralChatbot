@@ -2,6 +2,13 @@
 
 # 🧠 Sovereign AI Local Prototype — Architecture Overview
 
+
+## Demo
+
+
+https://github.com/user-attachments/assets/a923854b-37f1-4592-97f2-c734604bf96e
+
+
 ## 📌 Overview
 
 This project is a **local (sovereign) AI system** running entirely on a laptop.  
@@ -157,12 +164,117 @@ Generated answer
 
 ## Demonstration (start your server)
 
+## 🚀 Run the Sovereign AI Demo
 
-```uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload ```
+### 1. Start the application (Terminal 1)
 
-👉 This starts your local server at: http://127.0.0.1:8000
+```bash
+cd ~/sovereign-ai-laptop
+source .venv/bin/activate
+uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+```
 
-test quesiton 'What is the remote work policy'
+---
+
+### 2. Check Ollama (Terminal 2)
+
+```bash
+curl http://127.0.0.1:11434
+```
+
+Optional:
+
+```bash
+ollama list
+```
+
+---
+
+### 3. Show the knowledge base
+
+```bash
+cd ~/sovereign-ai-laptop
+ls data/kb
+cat data/kb/company_policy.txt
+```
+
+---
+
+### 4. Open the UI
+
+Open in your browser:
+
+```
+http://127.0.0.1:8000
+```
+
+Ask:
+
+```
+What is the remote work policy?
+```
+
+---
+
+### 5. Inspect PostgreSQL + pgvector
+
+Connect to the database:
+
+```bash
+psql "postgresql://postgres:postgres@127.0.0.1:5432/sovereign_ai"
+```
+
+Then run **each command separately** inside `psql`:
+
+```sql
+\pset pager off
+```
+
+```sql
+\dt
+```
+
+```sql
+SELECT source, chunk_index, content FROM documents;
+```
+
+```sql
+SELECT embedding FROM documents LIMIT 1;
+```
+
+```sql
+\q
+```
+
+---
+
+### 6. Show logs
+
+```bash
+cd ~/sovereign-ai-laptop
+cat logs/app.log
+cat logs/audit.jsonl
+```
+
+Optional live view:
+
+```bash
+tail -f logs/app.log
+```
+
+---
+
+### 🧠 Summary
+
+* **FastAPI** → handles API and UI
+* **PostgreSQL + pgvector** → stores and retrieves embeddings
+* **Ollama (Mistral)** → generates answers locally
+* **Logs** → provide full traceability of requests and responses
+
+
+
+
+## Demo with Github
 
 ```ngrok http 8000```
 
