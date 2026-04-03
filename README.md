@@ -157,11 +157,7 @@ Generated answer
 
 ## Demonstration (start your server)
 
-## 🔧 Exposing Local Backend with ngrok
 
-### 1. Start your FastAPI application
-
-bash
 ```uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload ```
 
 👉 This starts your local server at: http://127.0.0.1:8000
@@ -174,5 +170,6 @@ test quesiton 'What is the remote work policy'
 
 Internet → ngrok URL → your laptop:8000 → FastAPI
 
+Access Postgre and pgvector (from bash) : psql "postgresql://postgres:postgres@127.0.0.1:5432/sovereign_ai"
 
 
