@@ -1,6 +1,6 @@
 # SovereinOllamaMistralChatbot
 
-# 🧠 Sovereign AI Local Prototype — Architecture Overview
+# 🧠 Architecture Overview
 
 
 ## Demo
