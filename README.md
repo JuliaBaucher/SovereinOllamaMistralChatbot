@@ -157,10 +157,6 @@ Generated answer
 
 - Fully local (data privacy)
 - Simple but production-like design
-- Ideal for learning:
-  - RAG pipelines
-  - embeddings
-  - LLM orchestration
 
 ## Demonstration (start your server)
 
