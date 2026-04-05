@@ -87,6 +87,72 @@ Handles:
 
 ---
 
+### 4. Fast API
+
+FastAPI = list of URLs → mapped to Python functions
+
+/ {'GET'}
+/ask {'POST'}
+/health {'GET'}
+/metrics {'GET'}
+
+ask request
+
+```
+{
+  "question": "string"
+}
+```
+ask response
+
+```
+{
+  "answer": "string",
+  "sources": [
+    {
+      "source": "string",
+      "chunk_index": 0,
+      "content": "string",
+      "score": 0
+    }
+  ],
+  "latency_ms": 0
+}
+```
+ask example
+```
+{
+  "question": "What is the remote work policy?",
+  "retrieved_chunks": [
+    {
+      "source": "company_policy.txt",
+      "chunk_index": 0,
+      "content": "Employees may work remotely up to three days...",
+      "score": 0.12
+    }
+  ],
+  "constructed_prompt": "Context:\n[company_policy.txt#0] ...\n\nQuestion: ...",
+  "llm_input": {
+    "model": "mistral",
+    "prompt": "...full prompt..."
+  },
+  "llm_output": "Employees may work remotely up to three days per week...",
+  "final_response": {
+    "answer": "...",
+    "sources": [...],
+    "latency_ms": 842
+  }
+}
+```
+
+http://127.0.0.1:8000/docs
+
+http://127.0.0.1:8000/redoc
+
+### 5. Logs
+
+```tail -f logs/audit.jsonl```
+
 ## 🔄 End-to-End Flow
 
 User question
